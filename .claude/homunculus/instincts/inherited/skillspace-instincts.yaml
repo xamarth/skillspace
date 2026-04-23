@@ -1,0 +1,263 @@
+# Instincts generated from https://github.com/xamarth/skillspace
+# Generated: 2026-04-23T22:28:10.498Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: skillspace-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/xamarth/skillspace
+---
+
+# Skillspace Commit Length
+
+## Action
+
+Keep commit messages concise (~7 characters)
+
+## Evidence
+
+- Average commit message length: 7 chars
+- Based on 3 commits
+
+---
+id: skillspace-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/xamarth/skillspace
+---
+
+# Skillspace Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: skillspace-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/xamarth/skillspace
+---
+
+# Skillspace Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: skillspace-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/xamarth/skillspace
+---
+
+# Skillspace Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: components, dataconnect-generated, integrations, lib, routes
+
+---
+id: skillspace-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/xamarth/skillspace
+---
+
+# Skillspace Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: skillspace-workflow-update-skillcard-and-root-route
+trigger: "when doing update skillcard and root route"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/xamarth/skillspace
+---
+
+# Skillspace Workflow Update Skillcard And Root Route
+
+## Action
+
+Follow the update-skillcard-and-root-route workflow:
+1. Edit src/components/skillcard.tsx to update the skill card UI or logic
+2. Edit src/routes/__root.tsx and/or src/routes/index.tsx to reflect changes in the main route or homepage
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: src/components/skillcard.tsx, src/routes/__root.tsx, src/routes/index.tsx
+
+---
+id: skillspace-instinct-naming-conventions
+trigger: "When creating or renaming files, functions, classes, or constants"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: xamarth/skillspace
+---
+
+# Skillspace Instinct Naming Conventions
+
+## Action
+
+Use camelCase for files and functions, PascalCase for classes, and SCREAMING_SNAKE_CASE for constants
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions
+
+---
+id: skillspace-instinct-import-style
+trigger: "When importing modules"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: xamarth/skillspace
+---
+
+# Skillspace Instinct Import Style
+
+## Action
+
+Use absolute import paths
+
+## Evidence
+
+- Pattern in codeStyle.importStyle
+
+---
+id: skillspace-instinct-export-style
+trigger: "When exporting modules or functions"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: xamarth/skillspace
+---
+
+# Skillspace Instinct Export Style
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in codeStyle.exportStyle
+
+---
+id: skillspace-instinct-testing-location
+trigger: "When adding or updating tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: xamarth/skillspace
+---
+
+# Skillspace Instinct Testing Location
+
+## Action
+
+Place test files in a separate directory from source code
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation
+
+---
+id: skillspace-instinct-commit-format
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: xamarth/skillspace
+---
+
+# Skillspace Instinct Commit Format
+
+## Action
+
+Use a short, freeform message without a strict prefix, averaging around 7 words
+
+## Evidence
+
+- Pattern in commits.type and commits.averageLength
+
+---
+id: skillspace-instinct-update-skillcard-root-route
+trigger: "When modifying or enhancing the homepage/dashboard UI or its main components"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: xamarth/skillspace
+---
+
+# Skillspace Instinct Update Skillcard Root Route
+
+## Action
+
+Edit src/components/skillcard.tsx and then update src/routes/__root.tsx and/or src/routes/index.tsx to reflect changes
+
+## Evidence
+
+- Workflow: update-skillcard-and-root-route
+- Example commits editing src/components/skillcard.tsx and src/routes/__root.tsx or src/routes/index.tsx
+
+---
+id: skillspace-instinct-error-handling
+trigger: "When handling errors in code"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: xamarth/skillspace
+---
+
+# Skillspace Instinct Error Handling
+
+## Action
+
+Use try-catch blocks for error handling; do not use custom error classes or global handlers
+
+## Evidence
+
+- Pattern in errorHandling.style, errorHandling.customErrorClasses, errorHandling.globalHandler
+
