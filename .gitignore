@@ -30,3 +30,4 @@ todos.json
 
 /dataconnect/.dataconnect
 .firebase
+*.log
