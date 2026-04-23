@@ -19,4 +19,5 @@ todos.json
 /.vscode
 /temp
 /tmp
-.cursorrules
+/posthog*.md
+.claude

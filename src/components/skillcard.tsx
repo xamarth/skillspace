@@ -1,3 +1,4 @@
+import { usePostHog } from "@posthog/react";
 import { Link } from "@tanstack/react-router";
 import {
 	ArrowBigUp,
@@ -30,8 +31,8 @@ export default function SkillCard({
 	title,
 	author,
 }: SkillRecord) {
+	const posthog = usePostHog();
 	const [copied, setCopied] = useState(false);
-	// const posthog = usePostHog();
 
 	const category = tags[0] ?? "General";
 
@@ -40,11 +41,11 @@ export default function SkillCard({
 			await navigator.clipboard.writeText(installCommand);
 			setCopied(true);
 			setTimeout(() => setCopied(false), 2000);
-			// posthog.capture("install_command_copied", {
-			// 	skill_title: title,
-			// 	skill_category: category,
-			// 	install_command: installCommand,
-			// });
+			posthog.capture("install_command_copied", {
+				skill_title: title,
+				skill_category: category,
+				install_command: installCommand,
+			});
 		} catch {
 			setCopied(false);
 		}
@@ -76,7 +77,7 @@ export default function SkillCard({
 						<img
 							src={"/logo512.png"}
 							// src={author.imageUrl || "/logo512.png"}
-							alt={"img"}
+							alt=""
 							// alt={`${author.username} avatar` || "image"}
 							className="avatar"
 						/>
@@ -120,7 +121,8 @@ export default function SkillCard({
 					<div className="stats">
 						<button type="button" className="upvote" disabled>
 							<ArrowBigUp size={16} fill="currentColor" />
-							<span>{tags.length}</span>
+							{/* <span>{tags.length}</span> */}
+							<span>{0}</span>
 						</button>
 
 						<div className="comments">
@@ -134,12 +136,12 @@ export default function SkillCard({
 							to="/skills"
 							className="open"
 							title={`Open ${title}`}
-							// onClick={() =>
-							// 	posthog.capture("skill_opened", {
-							// 		skill_title: title,
-							// 		skill_category: category,
-							// 	})
-							// }
+							onClick={() =>
+								posthog.capture("skill_opened", {
+									skill_title: title,
+									skill_category: category,
+								})
+							}
 						>
 							<span>Open</span>
 							<ArrowUpRight size={14} />
