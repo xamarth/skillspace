@@ -19,5 +19,4 @@ todos.json
 /.vscode
 /temp
 /tmp
-
-.prettierignore
+.cursorrules
