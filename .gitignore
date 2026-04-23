@@ -20,4 +20,13 @@ todos.json
 /temp
 /tmp
 /posthog*.md
+/skills
 .claude
+.agents
+.factory
+.pi
+
+# firebase
+
+/dataconnect/.dataconnect
+.firebase

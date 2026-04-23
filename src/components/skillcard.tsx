@@ -9,19 +9,9 @@ import {
 	MessageSquare,
 } from "lucide-react";
 import { useState } from "react";
+import type { GetSkillsData } from "#/dataconnect-generated";
 
-type SkillRecord = {
-	createdAt?: string;
-	description: string;
-	installCommand: string;
-	tags: string[];
-	title: string;
-	author: {
-		username: string;
-		imageUrl?: string;
-		email?: string;
-	};
-};
+type SkillCardProps = GetSkillsData["skills"][number];
 
 export default function SkillCard({
 	createdAt,
@@ -30,7 +20,7 @@ export default function SkillCard({
 	tags,
 	title,
 	author,
-}: SkillRecord) {
+}: SkillCardProps) {
 	const posthog = usePostHog();
 	const [copied, setCopied] = useState(false);
 
@@ -75,14 +65,12 @@ export default function SkillCard({
 				<div className="meta">
 					<div className="author">
 						<img
-							src={"/logo512.png"}
-							// src={author.imageUrl || "/logo512.png"}
-							alt=""
-							// alt={`${author.username} avatar` || "image"}
+							src={author.imageUrl || "/logo512.png"}
+							alt={`${author.username} avatar` || "image"}
 							className="avatar"
 						/>
 						<div className="author-copy">
-							{/* <p>{author.username}</p> */}
+							<p>{author.username}</p>
 							<p>
 								{createdAt
 									? new Date(createdAt).toLocaleDateString()
@@ -121,13 +109,12 @@ export default function SkillCard({
 					<div className="stats">
 						<button type="button" className="upvote" disabled>
 							<ArrowBigUp size={16} fill="currentColor" />
-							{/* <span>{tags.length}</span> */}
-							<span>{0}</span>
+							<span>{tags.length}</span>
 						</button>
 
 						<div className="comments">
 							<MessageSquare size={14} />
-							{/* <span>{author.email ? 1 : 0}</span> */}
+							<span>{author.email ? 1 : 0}</span>
 						</div>
 					</div>
 
