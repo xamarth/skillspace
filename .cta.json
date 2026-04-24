@@ -16,6 +16,7 @@
   "framework": "react",
   "chosenAddOns": [
     "biome",
+    "cloudflare",
     "compiler",
     "clerk",
     "shadcn",
