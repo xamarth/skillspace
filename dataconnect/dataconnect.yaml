@@ -1,0 +1,13 @@
+specVersion: "v1"
+serviceId: "oreo-zen-service"
+location: "asia-southeast1"
+schemas:
+  - source: "./schema"
+    datasource:
+      postgresql:
+        database: "oreo-zen-database"
+        cloudSql:
+          instanceId: "oreo-zen-instance"
+          # schemaValidation: "STRICT"     # STRICT mode makes Postgres schema match Data Connect exactly.
+          # schemaValidation: "COMPATIBLE" # COMPATIBLE mode makes Postgres schema compatible with Data Connect.
+connectorDirs: ["./connectors"]

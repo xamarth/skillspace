@@ -1,91 +1,100 @@
+import { ClerkProvider } from "@clerk/tanstack-react-start";
+import { PostHogProvider } from "@posthog/react";
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import type { QueryClient } from "@tanstack/react-query";
 import {
-  HeadContent,
-  Scripts,
-  createRootRouteWithContext,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
-
-import ClerkProvider from '../integrations/clerk/provider'
-
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
-
-import appCss from '../styles.css?url'
-
-import type { QueryClient } from '@tanstack/react-query'
-import Navbar from '#/components/navbar'
-import Crosshair from '#/components/crosshair'
+	createRootRouteWithContext,
+	HeadContent,
+	Scripts,
+} from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import Crosshair from "#/components/crosshair";
+import Navbar from "#/components/navbar";
+import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
+import appCss from "../styles.css?url";
 
 interface MyRouterContext {
-  queryClient: QueryClient
+	queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
-  head: () => ({
-    meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: 'Skill Space',
-      },
-      {
-        name: 'description',
-        content: 'A skill sharing platform built with TanStack Router',
-      }
-    ],
-    links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootDocument,
-})
+	head: () => ({
+		meta: [
+			{
+				charSet: "utf-8",
+			},
+			{
+				name: "viewport",
+				content: "width=device-width, initial-scale=1",
+			},
+			{
+				title: "Skill Space",
+			},
+			{
+				name: "description",
+				content: "A skill sharing platform built with TanStack Router",
+			},
+		],
+		links: [
+			{
+				rel: "stylesheet",
+				href: appCss,
+			},
+		],
+	}),
+	shellComponent: RootDocument,
+});
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body className="font-sans antialiased wrap-anywhere">
-        <ClerkProvider>
-          <div id='root-layout'>
-            <header>
-              <div className="frame">
-                <Navbar />
-                <Crosshair />
-                <Crosshair />
-              </div>
-            </header>
-            <main>
-              <div className="frame">
-                {children}
-              </div>
-            </main>
-          </div>
+	return (
+		<html lang="en" className="overflow-x-hidden">
+			<head>
+				<HeadContent />
+			</head>
+			<body className="font-sans antialiased wrap-anywhere">
+				<PostHogProvider
+					// client={posthog}
+					apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN ?? ""}
+					options={{
+						api_host: "/ingest",
+						ui_host:
+							import.meta.env.VITE_PUBLIC_POSTHOG_HOST ||
+							"https://us.posthog.com",
+						defaults: "2025-05-24",
+						capture_exceptions: true,
+						debug: import.meta.env.DEV,
+					}}
+				>
+					<ClerkProvider>
+						<div id="root-layout">
+							<header>
+								<div className="frame">
+									<Navbar />
+									<Crosshair />
+									<Crosshair />
+								</div>
+							</header>
+							<main>
+								<div className="frame">{children}</div>
+							</main>
+						</div>
 
-          <TanStackDevtools
-            config={{
-              position: 'bottom-right',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-              TanStackQueryDevtools,
-            ]}
-          />
-        </ClerkProvider>
-        <Scripts />
-      </body>
-    </html>
-  )
+						<TanStackDevtools
+							config={{
+								position: "bottom-right",
+							}}
+							plugins={[
+								{
+									name: "Tanstack Router",
+									render: <TanStackRouterDevtoolsPanel />,
+								},
+								TanStackQueryDevtools,
+							]}
+						/>
+					</ClerkProvider>
+				</PostHogProvider>
+				<Scripts />
+			</body>
+		</html>
+	);
 }

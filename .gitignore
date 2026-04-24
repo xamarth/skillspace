@@ -19,4 +19,15 @@ todos.json
 /.vscode
 /temp
 /tmp
-.cursorrules
+/posthog*.md
+/skills
+.claude
+.agents
+.factory
+.pi
+
+# firebase
+
+/dataconnect/.dataconnect
+.firebase
+*.log
