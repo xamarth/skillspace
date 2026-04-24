@@ -25,6 +25,7 @@ todos.json
 .agents
 .factory
 .pi
+.env.*
 
 # firebase
 
